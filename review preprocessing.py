@@ -39,11 +39,11 @@ with open('1429_1.csv', 'r', encoding="latin1") as amazon_reviews:
             if row[0] == 'id':
                 continue
             tokens = preprocess(row[16])
-            rating = float(3 if row[14] == '' else row[14]) >= (avg - 0.5)
+            sentiment = float(3 if row[14] == '' else row[14]) >= (avg - 0.5)
 
-            if (i < 4000 and rating) or (j < 4000 and not rating):
-                reviews.append({'tokens': tokens, 'rating': rating})
-                if rating:
+            if (i < 4000 and sentiment) or (j < 4000 and not sentiment):
+                reviews.append({'tokens': tokens, 'class': sentiment})
+                if sentiment:
                     i += 1
                 else:
                     j += 1
@@ -74,11 +74,11 @@ with open('TA_restaurants_curated.csv', 'r', encoding="latin1") as trip_advisor_
             if row[0] == '':
                 continue
             tokens = (preprocess(row[8]))[:-6]
-            rating = float(3.0 if row[5] == '' else row[5]) >= (avg - 0.5)
+            sentiment = float(3.0 if row[5] == '' else row[5]) >= (avg - 0.5)
 
-            if (i < 4000 and rating) or (j < 4000 and not rating):
-                reviews.append({'tokens': tokens, 'rating': rating})
-                if rating:
+            if (i < 4000 and sentiment) or (j < 4000 and not sentiment):
+                reviews.append({'tokens': tokens, 'class': sentiment})
+                if sentiment:
                     i += 1
                 else:
                     j += 1
