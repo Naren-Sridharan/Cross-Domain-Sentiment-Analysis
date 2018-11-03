@@ -11,7 +11,7 @@ from pprint import pprint
 
 def preprocess(sentence):
     sentence = sentence.lower()
-    tokenizer = RegexpTokenizer(r'\w+')
+    tokenizer = RegexpTokenizer(r'[a-zA-Z]+')
     words = tokenizer.tokenize(sentence)
     lemmatizer = WordNetLemmatizer()
     filtered_words = [lemmatizer.lemmatize(w) for w in words if w not in stopwords.words('english')]
