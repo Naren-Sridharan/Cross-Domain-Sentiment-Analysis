@@ -8,6 +8,8 @@ from nltk.stem import WordNetLemmatizer
 from dateutil import parser
 from pprint import pprint
 
+class_count = 4000
+
 
 def preprocess(sentence):
     sentence = sentence.lower()
@@ -39,16 +41,20 @@ with open('1429_1.csv', 'r', encoding="latin1") as amazon_reviews:
             if row[0] == 'id' or row[16] == '':
                 continue
             tokens = preprocess(row[16])
-            sentiment = float(3 if row[14] == '' else row[14]) >= (avg - 0.5)
 
-            if (i < 4000 and sentiment) or (j < 4000 and not sentiment):
+            if "".join(tokens) == "":
+                continue
+
+            sentiment = float(3 if row[14] == '' else row[14]) >= avg
+
+            if (i < class_count and sentiment) or (j < class_count and not sentiment):
                 reviews.append({'tokens': tokens, 'class': sentiment})
                 if sentiment:
                     i += 1
                 else:
                     j += 1
 
-            if i == 4000 and j == 4000:
+            if i == class_count and j == class_count:
                 break
 
         pickle.dump(reviews, pickle_file, protocol=-1)
@@ -73,17 +79,22 @@ with open('TA_restaurants_curated.csv', 'r', encoding="latin1") as trip_advisor_
         for row in csv.reader(trip_advisor_reviews):
             if row[0] == '' or row[8] == '':
                 continue
-            tokens = (preprocess(row[8]))[:-6]
-            sentiment = float(3.0 if row[5] == '' else row[5]) >= (avg - 0.5)
 
-            if (i < 4000 and sentiment) or (j < 4000 and not sentiment):
+            tokens = (preprocess(row[8][: row[8].find(']')]))[:-6]
+
+            if "".join(tokens) == "":
+                continue
+
+            sentiment = float(3.0 if row[5] == '' else row[5]) >= avg
+
+            if (i < class_count and sentiment) or (j < class_count and not sentiment):
                 reviews.append({'tokens': tokens, 'class': sentiment})
                 if sentiment:
                     i += 1
                 else:
                     j += 1
 
-            if i == 4000 and j == 4000:
+            if i == class_count and j == class_count:
                 break
 
         pickle.dump(reviews, pickle_file, protocol=-1)
@@ -100,5 +111,5 @@ with open('trip_advisor_data.pickle', 'rb') as trip_advisor_data:
     trip_advisor_reviews = pickle.load(trip_advisor_data)
 
 print("Number of Trip Advisor reviews taken: " + str(len(trip_advisor_reviews)))
-#print("processed data:")
-#print(trip_advisor_reviews)
+# print("processed data:")
+# print(trip_advisor_reviews)
