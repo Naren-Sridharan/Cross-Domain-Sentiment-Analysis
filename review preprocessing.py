@@ -36,7 +36,7 @@ with open('1429_1.csv', 'r', encoding="latin1") as amazon_reviews:
         i = 0
         j = 0
         for row in csv.reader(amazon_reviews):
-            if row[0] == 'id':
+            if row[0] == 'id' or row[16] == '':
                 continue
             tokens = preprocess(row[16])
             sentiment = float(3 if row[14] == '' else row[14]) >= (avg - 0.5)
@@ -71,7 +71,7 @@ with open('TA_restaurants_curated.csv', 'r', encoding="latin1") as trip_advisor_
         i = 0
         j = 0
         for row in csv.reader(trip_advisor_reviews):
-            if row[0] == '':
+            if row[0] == '' or row[8] == '':
                 continue
             tokens = (preprocess(row[8]))[:-6]
             sentiment = float(3.0 if row[5] == '' else row[5]) >= (avg - 0.5)
