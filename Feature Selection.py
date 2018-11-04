@@ -1,4 +1,3 @@
-from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_selection import mutual_info_classif, chi2
 from sklearn.feature_extraction.text import CountVectorizer
 import pickle
