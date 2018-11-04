@@ -5,6 +5,7 @@ import nltk
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+from nltk import pos_tag
 from dateutil import parser
 from pprint import pprint
 
