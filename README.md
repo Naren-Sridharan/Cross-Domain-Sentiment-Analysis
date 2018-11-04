@@ -21,7 +21,7 @@ Cross-Domain Sentiment Analysis Employing Different Feature Selection and Classi
 1. Load review-class list
 2. X = np array of documents - documents created but joining all tokens
 3. Y = np array of classes
-4. Use CountVectorizer from sklearn and fit the cocabulary for the documents and obtain document vectors
+4. Use CountVectorizer from sklearn and fit the vocabulary for the documents and obtain document vectors
 5. Find info-gain and chi-square test scores for the words (features) and take the top 1000 (select_count)
 6. Find list of common top features and save them to _\_.selected_features.pickle_
 
