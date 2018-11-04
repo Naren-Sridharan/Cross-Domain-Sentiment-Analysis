@@ -2,11 +2,11 @@
 Cross-Domain Sentiment Analysis Employing Different Feature Selection and Classification Techniques
 
 # Procedure to reproduce results
-1. install nltk (preprocessing), scikit-learn(feature selection and classification), pickle (dump and load objects), pprint (pretty print) etc
+1. Install nltk (preprocessing), scikit-learn(feature selection and classification), pickle (dump and load objects), pprint (pretty print) etc
 2. Download all files into same folder
 3. Unzip both data files and run "review preprocessing.py" to get or update the _\_data.pickle_ files
-4. run "feature selection.py" to obtain top features of amazon and trip advisor reviews in seperate _\_selected_features.pickle_ files
-5. run "sentiment classifiers.py" to get the different accuracies obtained by training and testing different classifiers
+4. Run "feature selection.py" to obtain top features of amazon and trip advisor reviews in seperate _\_selected_features.pickle_ files
+5. Run "sentiment classifiers.py" to get the different accuracies obtained by training and testing different classifiers
 
 # Preprocessing Steps
 1. Read .csv file
