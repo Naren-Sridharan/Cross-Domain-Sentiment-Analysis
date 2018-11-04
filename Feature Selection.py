@@ -11,7 +11,7 @@ with open('amazon_data.pickle', 'rb') as amazon_data:
     cv = CountVectorizer(max_df=0.95, min_df=2,
                          max_features=10000)
     X_vec = cv.fit_transform(X)
-    select_count = 300
+    select_count = 600
     res = sorted(list(zip(cv.get_feature_names(),
                    mutual_info_classif(X_vec, Y, discrete_features=True)
                    )), key=lambda x: x[1], reverse=True)[0:select_count]
